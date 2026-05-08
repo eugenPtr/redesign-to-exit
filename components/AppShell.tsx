@@ -44,9 +44,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
     <StepContext.Provider value={{ currentStep, setCurrentStep }}>
       <div className="flex min-h-full flex-1 flex-col bg-brand-bg">
         <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-5">
-          <h1 className="text-xl font-semibold tracking-tight text-brand-headline">
+          <Link href="/" className="text-xl font-semibold tracking-tight text-brand-headline">
             Redesign to Exit
-          </h1>
+          </Link>
           <Suspense fallback={null}>
             <DemoBadge />
           </Suspense>

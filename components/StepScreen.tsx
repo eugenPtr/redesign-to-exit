@@ -230,8 +230,8 @@ export default function StepScreen({ stepNumber }: Props) {
                 <textarea
                   value={designMove}
                   onChange={(e) => setDesignMove(e.target.value)}
-                  rows={2}
-                  className="w-full rounded-md border border-zinc-200 bg-white p-3 text-sm font-semibold text-brand-headline focus:border-brand-headline focus:outline-none focus:ring-1 focus:ring-brand-headline"
+                  className="w-full resize-none overflow-hidden rounded-md border border-zinc-200 bg-white p-3 text-base font-semibold text-brand-headline focus:border-brand-headline focus:outline-none focus:ring-1 focus:ring-brand-headline"
+                  style={{ fieldSizing: "content" } as React.CSSProperties}
                 />
               </div>
 
@@ -275,7 +275,7 @@ export default function StepScreen({ stepNumber }: Props) {
                 <p className="text-xs font-semibold uppercase tracking-wide text-brand-text">
                   Design Move
                 </p>
-                <p className="rounded-md border border-brand-headline/20 bg-brand-headline/5 p-3 text-sm font-semibold text-brand-headline">
+                <p className="rounded-md border border-brand-headline/20 bg-brand-headline/5 p-3 text-base font-semibold text-brand-headline">
                   {designMove}
                 </p>
               </div>
