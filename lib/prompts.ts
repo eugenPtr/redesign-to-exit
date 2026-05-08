@@ -70,10 +70,9 @@ export function buildStepPrompt(
     "   - Be punchy enough to open a pitch deck",
     '   - Follow the style: "We [verb] [specific offer] for [specific who]"',
     "",
-    '2. Write 3–5 "How to do it" action items. They should:',
+    '2. Write exactly 3 "How to do it" action items. Each must be 1–4 short sentences (max 30 words per item). They should:',
     "   - Be concrete and sequenced (what to do first, second, third)",
     "   - Reference this founder's actual situation, not generic advice",
-    "   - Be implementable in the next 30 days",
     "",
     "Respond with valid JSON only:",
     '{ "designMove": "...", "howToDoIt": ["...", "...", "..."] }',
@@ -82,25 +81,69 @@ export function buildStepPrompt(
   return { system: SYSTEM_PROMPT, user };
 }
 
-export function buildPitchPrompt(allSteps: PriorStepContext[]): string {
+const PITCH_SYSTEM_PROMPT = `You are a pitch deck writer for a business transformation advisor firm. You are given a solo founder's complete 16-step business redesign — their original situation, their accepted design moves at each step, and their answers throughout. Your job is to write a concise, compelling investor pitch deck that tells a coherent exit story based entirely on what this founder has built.
+
+Do not use generic filler. Every claim must be grounded in their actual answers.
+Write as if this deck will be shown to serious investors or potential acquirers.`;
+
+const PITCH_SCHEMA_DESCRIPTION = `{
+  "cover": { "companyName": string, "valueProposition": string, "targetAudience": string, "founderName": string },
+  "problem": { "headline": string, "clarifyingParagraph": string, "facts": [{ "headline": string, "data": string }] },
+  "opportunityGap": { "marketGap": string, "supportingParagraph": string },
+  "opportunitySize": { "tam": string, "sam": string, "som": string },
+  "solution": { "description": string, "points": string[] },
+  "operatingModel": { "columns": [{ "headline": string, "paragraph": string }] },
+  "valueCreation": { "headline": string, "paragraph": string },
+  "businessModel": { "revenueStreams": string, "tractionEvidence": string },
+  "milestones": [{ "year": string, "objective": string }],
+  "goToMarket": { "columns": [{ "headline": string, "points": string[] }] },
+  "competitiveAdvantage": { "headline": string, "description": string },
+  "team": { "members": [{ "name": string, "role": string, "description": string }] },
+  "impact": { "points": string[], "vision": string },
+  "ask": { "amount": string, "useOfFunds": string, "paragraph": string },
+  "thankYou": { "message": string, "contactName": string }
+}`;
+
+const SLIDE_STEP_MAPPING = `Slide-to-step mapping (use these steps as the primary source for each slide):
+- cover: Steps 1, 2 (business identity, customer)
+- problem: Steps 1, 2, 14 (current state before transformation, AI threat)
+- opportunityGap: Steps 2, 10 (customer clarity, market expansion)
+- opportunitySize: Steps 1, 2, 10 (market data across steps)
+- solution: Steps 3, 4, 11 (productized offer, delivery systems, scalable layer)
+- operatingModel: Steps 4, 5, 6 (delivery systems, founder role, team capacity)
+- valueCreation: Steps 7, 8, 9 (recurring revenue, transferable assets, reduced dependency)
+- businessModel: Steps 3, 7, 15 (productized offers, recurring revenue, KPIs)
+- milestones: Steps 10, 11, 16 (expansion, platform, ask milestones)
+- goToMarket: Steps 2, 6, 13 (customer clarity, team, investor/partnerships)
+- competitiveAdvantage: Steps 8, 14 (transferable assets, AI defensibility)
+- team: Steps 5, 6 (founder role, team capacity)
+- impact: Steps 11, 15 (scalable layer, long-term performance)
+- ask: Step 16 (the ask)
+- thankYou: Step 1 (founder name/company)`;
+
+export function buildPitchPrompt(allSteps: PriorStepContext[]): PromptMessages {
   const context =
     allSteps.length === 0
       ? "(no steps completed yet)"
       : allSteps
           .map(
             (p) =>
-              `Step ${p.stepNumber} — ${p.title}\nAnswers: ${JSON.stringify(p.answers)}\nAccepted Design Move: ${p.acceptedDesignMove}`,
+              `### Step ${p.stepNumber}: ${p.title}\nDesign move: "${p.acceptedDesignMove}"\nKey answers: ${JSON.stringify(p.answers)}`,
           )
           .join("\n\n");
 
-  return [
-    SYSTEM_PROMPT,
+  const user = [
+    "## Founder context across 16 framework steps",
     "",
-    "Generate a professional investor pitch deck as JSON matching the PitchDeckJSON schema (cover, problem, opportunityGap, opportunitySize, solution, operatingModel, valueCreation, businessModel, milestones, goToMarket, competitiveAdvantage, team, impact, ask, thankYou).",
-    "Ground every slide in the founder's answers and accepted design moves below — no generic filler.",
-    "Output JSON only.",
-    "",
-    "Founder context across 16 framework steps:",
     context,
+    "",
+    SLIDE_STEP_MAPPING,
+    "",
+    "## Output schema",
+    "Return ONLY a valid JSON object matching this exact schema. No markdown, no explanation, no extra text.",
+    "",
+    PITCH_SCHEMA_DESCRIPTION,
   ].join("\n");
+
+  return { system: PITCH_SYSTEM_PROMPT, user };
 }

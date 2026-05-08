@@ -1,35 +1,12 @@
+import type { PitchDeckJSON } from "./pitch-schema";
+
+export type { PitchDeckJSON };
+
 export type StepState = {
   answers: Record<string, string>;
   designMove: string;
   howToDoIt: string[];
   completedAt: string;
-};
-
-export type PitchDeckJSON = {
-  cover: {
-    companyName: string;
-    valueProposition: string;
-    targetAudience: string;
-    founderName: string;
-  };
-  problem: {
-    headline: string;
-    clarifyingParagraph: string;
-    facts: Array<{ headline: string; data: string }>;
-  };
-  opportunityGap: { marketGap: string; supportingParagraph: string };
-  opportunitySize: { tam: string; sam: string; som: string };
-  solution: { description: string; points: string[] };
-  operatingModel: { columns: Array<{ headline: string; paragraph: string }> };
-  valueCreation: { headline: string; paragraph: string };
-  businessModel: { revenueStreams: string; tractionEvidence: string };
-  milestones: Array<{ year: string; objective: string }>;
-  goToMarket: { columns: Array<{ headline: string; points: string[] }> };
-  competitiveAdvantage: { headline: string; description: string };
-  team: { members: Array<{ name: string; role: string; description: string }> };
-  impact: { points: string[]; vision: string };
-  ask: { amount: string; useOfFunds: string; paragraph: string };
-  thankYou: { message: string; contactName: string };
 };
 
 export type AppState = {

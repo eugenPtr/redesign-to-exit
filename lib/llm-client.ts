@@ -53,11 +53,12 @@ export async function callStepAdvisor(prompt: PromptMessages): Promise<StepAdvis
   };
 }
 
-export async function callPitchGenerator(prompt: string): Promise<string> {
+export async function callPitchGenerator(prompt: PromptMessages): Promise<string> {
   const message = await getClient().messages.create({
     model: MODEL,
     max_tokens: 8192,
-    messages: [{ role: "user", content: prompt }],
+    system: prompt.system,
+    messages: [{ role: "user", content: prompt.user }],
   });
   return stripJsonFences(extractText(message));
 }

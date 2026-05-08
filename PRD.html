@@ -1,0 +1,253 @@
+<h1
+id="prd-design-to-exit-solo-founder-business-transformation-app">PRD:
+Design-to-Exit — Solo Founder Business Transformation App</h1>
+<p><strong>Status:</strong> Ready for implementation<br />
+<strong>Target:</strong> PoC / Demo (single user)</p>
+<hr />
+<h2 id="problem-statement">Problem Statement</h2>
+<p>Solo founders — coaches, consultants, creatives, doctors — are
+generating revenue but are completely dependent on themselves to deliver
+it. They have demand but no system. No predictability. No scalability.
+No path to exit. They don’t know what moves to make, in what order, to
+transform their personal income source into a sellable business
+asset.</p>
+<hr />
+<h2 id="solution">Solution</h2>
+<p>A guided web app that walks founders through a 16-step framework, one
+step at a time, to redesign their business into an exitable company.
+Each step asks targeted questions about their current situation, then
+uses an LLM to suggest a tailored “Exitable Design Move” and
+personalized action plan. After completing all 16 steps, the app
+generates a shareable pitch deck that presents their transformed
+business to potential investors or acquirers.</p>
+<hr />
+<h2 id="user-stories">User Stories</h2>
+<ol type="1">
+<li>As a solo founder, I want to see all 16 framework steps at a glance
+in a sidebar, so that I understand the full journey I’m about to
+take.</li>
+<li>As a solo founder, I want steps to unlock sequentially, so that I
+build context progressively before tackling each move.</li>
+<li>As a solo founder, I want each step to explain what it’s about
+before asking me questions, so that I understand why it matters.</li>
+<li>As a solo founder, I want to answer multiple focused sub-questions
+per step with helpful placeholders, so that I understand what quality
+answers look like.</li>
+<li>As a solo founder, I want the placeholder text to show me the
+optimal answer format, so that I’m guided without feeling
+constrained.</li>
+<li>As a solo founder, I want to submit my answers and receive an
+LLM-suggested “Exitable Design Move”, so that I learn how to reframe my
+current situation.</li>
+<li>As a solo founder, I want the suggested design move to account for
+everything I’ve answered in previous steps, so that the advice is
+coherent and cumulative.</li>
+<li>As a solo founder, I want to edit the suggested design move, so that
+I can refine it to match my actual business.</li>
+<li>As a solo founder, I want to receive a personalized “How to do it”
+action plan per step, so that I know the concrete next steps to execute
+the design move.</li>
+<li>As a solo founder, I want the “How to do it” to be specific to my
+business context, not generic advice.</li>
+<li>As a solo founder, I want to see my accepted design move saved on
+the step card, so that I can review my progress.</li>
+<li>As a solo founder, I want to return to any completed step and edit
+my answers or design move, so that my thinking can evolve over
+time.</li>
+<li>As a solo founder, I want my progress to be automatically saved, so
+that I don’t lose my work between sessions.</li>
+<li>As a solo founder, I want a clear visual indicator of which steps
+are completed, in progress, or locked, so that I always know where I
+am.</li>
+<li>As a solo founder, I want to see a summary of all my design moves as
+I complete each step, so that I can see the business I’m building.</li>
+<li>As a solo founder, I want a “Generate Pitch Deck” button that
+appears after I complete all 16 steps, so that I know when I’m ready to
+produce my output.</li>
+<li>As a solo founder, I want the pitch deck generation to incorporate
+all my design moves and business context, so that it tells a coherent
+investment story.</li>
+<li>As a solo founder, I want the pitch deck to be structured as a real
+investor presentation with clear slides, so that I can share it with
+potential investors or acquirers.</li>
+<li>As a solo founder, I want the pitch deck available at a dedicated
+URL, so that I can share it easily.</li>
+<li>As a solo founder, I want the pitch deck to include: Cover, Problem
+Statement, Market Opportunity, TAM/SAM/SOM, Solution, Operating Model,
+Value Creation Process, Business Model &amp; Traction, Milestones,
+Go-to-Market, Competitive Advantage, Team, Impact, Ask, and Thank You
+slides.</li>
+<li>As a solo founder, I want each pitch deck slide to use the content I
+built across the 16 steps, so that the deck is grounded in real
+analysis, not generic filler.</li>
+<li>As a solo founder, I want the pitch deck to look professional enough
+to share with investors, so that it creates a credible first
+impression.</li>
+</ol>
+<hr />
+<h2 id="implementation-decisions">Implementation Decisions</h2>
+<h3 id="modules">Modules</h3>
+<p><strong>1. Framework Data Module (static)</strong><br />
+Central source of truth for all 16 steps. Each step entry contains: step
+number, title, description, sub-questions (derived from framework
+columns: current state, market context, financial situation,
+assets/capabilities), optimal answer placeholders, and the pitch slide
+this step feeds into. No runtime dependency — pure static data.</p>
+<p><strong>2. State Manager</strong><br />
+Thin wrapper around <code>localStorage</code>. Stores per-step state:
+user’s raw answers to sub-questions, accepted design move text,
+how-to-do-it text, and completion status. Exposes typed read/write/reset
+operations. All 16 steps’ state accumulates here and serves as the LLM
+context payload.</p>
+<p><strong>3. LLM Client</strong><br />
+Anthropic Claude Sonnet 4.6 API wrapper. Two call types: - <strong>Step
+call</strong>: receives current step definition + user’s answers to this
+step + all previous steps’ answers and accepted design moves → returns
+<code>{ designMove: string, howToDoIt: string[] }</code><br />
+- <strong>Pitch call</strong>: receives all 16 completed steps (answers
++ design moves) → returns structured <code>PitchDeckJSON</code> (one
+object per slide with typed content fields matching the template)</p>
+<p>System prompt establishes the framework’s philosophy: solo operator →
+exitable company. Context grows with each step.</p>
+<p><strong>4. Step Screen</strong><br />
+Single page/component that renders any of the 16 steps. Sections: step
+header (number, title, description), sub-questions with inputs and
+placeholders, submit button (triggers LLM step call), LLM output section
+(editable design move textarea + how-to-do-it list). Completed state
+shows saved design move with edit affordance.</p>
+<p><strong>5. Sidebar</strong><br />
+Persistent navigation showing all 16 steps. Three states per step:
+locked (grey, not clickable), unlocked/current (active), completed
+(checkmark, clickable to revisit). Shows step number and title.
+Highlights current step.</p>
+<p><strong>6. Pitch Deck Renderer</strong><br />
+<code>/pitch-deck</code> route. Reads pitch JSON from localStorage
+(written after generation). Renders 15 slides as full-screen CSS
+snap-scroll sections. Inspired by the PDF template structure — same
+slide titles and content hierarchy, clean Tailwind implementation. No
+LLM call at render time; purely presentational.</p>
+<h3 id="sub-question-derivation">Sub-question Derivation</h3>
+<p>Each step’s sub-questions map to the relevant framework columns for
+that step. Not every column applies to every step. Core questions
+extracted from: - <strong>Current version column</strong> → “How would
+you describe your current [step topic]?”<br />
+- <strong>Financial Model column</strong> → revenue/pricing questions
+where relevant (Steps 1–7)<br />
+- <strong>Market column</strong> → market sizing questions where
+relevant (Steps 1–3, 10)<br />
+- <strong>Assets column</strong> → what exists today that could be
+formalized (Steps 8–11)<br />
+- <strong>Exit/Investor columns</strong> → forward-looking questions
+(Steps 12–16)</p>
+<h3 id="llm-context-strategy">LLM Context Strategy</h3>
+<p>Each step call passes: 1. System prompt: framework philosophy + role
+(business transformation advisor) 2. Business context: all previous
+steps’ sub-question answers + accepted design moves in structured format
+3. Current step: definition, example design move from framework (as
+inspiration, not template), user’s answers</p>
+<p>The LLM is instructed to output the design move as a single punchy
+sentence (like the framework examples) and how-to-do-it as 3–5 concrete
+action items.</p>
+<h3 id="pitch-deck-json-schema">Pitch Deck JSON Schema</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> PitchDeckJSON <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  cover<span class="op">:</span> { companyName<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> valueProposition<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> targetAudience<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> founderName<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  problem<span class="op">:</span> { headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> clarifyingParagraph<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> facts<span class="op">:</span> <span class="bu">Array</span><span class="op">&lt;</span>{ headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> data<span class="op">:</span> <span class="dt">string</span> }<span class="op">&gt;</span> }</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  opportunityGap<span class="op">:</span> { marketGap<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> supportingParagraph<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  opportunitySize<span class="op">:</span> { tam<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> sam<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> som<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  solution<span class="op">:</span> { description<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> points<span class="op">:</span> <span class="dt">string</span>[] }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  operatingModel<span class="op">:</span> { columns<span class="op">:</span> <span class="bu">Array</span><span class="op">&lt;</span>{ headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> paragraph<span class="op">:</span> <span class="dt">string</span> }<span class="op">&gt;</span> }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  valueCreation<span class="op">:</span> { headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> paragraph<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  businessModel<span class="op">:</span> { revenueStreams<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> tractionEvidence<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  milestones<span class="op">:</span> <span class="bu">Array</span><span class="op">&lt;</span>{ year<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> objective<span class="op">:</span> <span class="dt">string</span> }<span class="op">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  goToMarket<span class="op">:</span> { columns<span class="op">:</span> <span class="bu">Array</span><span class="op">&lt;</span>{ headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> points<span class="op">:</span> <span class="dt">string</span>[] }<span class="op">&gt;</span> }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  competitiveAdvantage<span class="op">:</span> { headline<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> description<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  team<span class="op">:</span> { members<span class="op">:</span> <span class="bu">Array</span><span class="op">&lt;</span>{ name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> role<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> description<span class="op">:</span> <span class="dt">string</span> }<span class="op">&gt;</span> }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  impact<span class="op">:</span> { points<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span> vision<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ask<span class="op">:</span> { amount<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> useOfFunds<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> paragraph<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  thankYou<span class="op">:</span> { message<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> contactName<span class="op">:</span> <span class="dt">string</span> }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="state-persistence">State Persistence</h3>
+<p>All state in <code>localStorage</code> under a single key
+(<code>gia-design-to-exit-state</code>). Shape:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> AppState <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  steps<span class="op">:</span> <span class="bu">Record</span><span class="op">&lt;</span><span class="dt">number</span><span class="op">,</span> {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    answers<span class="op">:</span> <span class="bu">Record</span><span class="op">&lt;</span><span class="dt">string</span><span class="op">,</span> <span class="dt">string</span><span class="op">&gt;</span>   <span class="co">// questionId → user answer</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    designMove<span class="op">:</span> <span class="dt">string</span>                <span class="co">// accepted (possibly edited) design move</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    howToDoIt<span class="op">:</span> <span class="dt">string</span>[]              <span class="co">// LLM-generated action items</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    completedAt<span class="op">:</span> <span class="dt">string</span>              <span class="co">// ISO timestamp</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  }<span class="op">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  pitchDeck<span class="op">:</span> PitchDeckJSON <span class="op">|</span> <span class="dt">null</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="tech-stack">Tech Stack</h3>
+<ul>
+<li><strong>Framework</strong>: Next.js (App Router)</li>
+<li><strong>Styling</strong>: Tailwind CSS</li>
+<li><strong>LLM</strong>: Anthropic SDK
+(<code>@anthropic-ai/sdk</code>), Claude Sonnet 4.6</li>
+<li><strong>State</strong>: localStorage (no database, no auth)</li>
+<li><strong>API key</strong>: <code>ANTHROPIC_API_KEY</code> environment
+variable, called from Next.js API route (not exposed to client)</li>
+</ul>
+<hr />
+<h2 id="testing-decisions">Testing Decisions</h2>
+<p><strong>What makes a good test here</strong>: Test behavior visible
+to the user or to calling code — not implementation internals. A good
+test says “given this input, this output appears” without caring
+how.</p>
+<p><strong>Modules to test:</strong></p>
+<ol type="1">
+<li><p><strong>Framework Data Module</strong> — verify all 16 steps are
+present, each has required fields (title, description, sub-questions,
+pitch slide mapping), no missing placeholders. Pure data validation, no
+mocks needed.</p></li>
+<li><p><strong>State Manager</strong> — unit tests: write step state,
+read it back, update design move, mark complete, reset. Mock
+localStorage with <code>jest.spyOn</code> or <code>localStorage</code>
+polyfill.</p></li>
+<li><p><strong>LLM Client</strong> — integration-style unit tests with
+mocked Anthropic SDK. Verify correct prompt structure is sent (system
+prompt present, prior context included, step definition present). Verify
+output is parsed correctly into <code>{ designMove, howToDoIt }</code>
+shape.</p></li>
+<li><p><strong>Pitch Deck JSON schema</strong> — validate LLM pitch
+output against the <code>PitchDeckJSON</code> type at runtime (zod
+schema) so bad LLM output fails fast with a clear error rather than
+silently breaking the UI.</p></li>
+</ol>
+<p>No UI component tests for the PoC — manual testing sufficient given
+single-user scope.</p>
+<hr />
+<h2 id="out-of-scope">Out of Scope</h2>
+<ul>
+<li>User authentication and multi-user support</li>
+<li>Database persistence (future migration path: replace localStorage
+state manager with API calls)</li>
+<li>Shareable pitch URL with unique ID (single <code>/pitch-deck</code>
+route sufficient for PoC)</li>
+<li>Pixel-perfect PDF template recreation</li>
+<li>Mobile-optimized layout</li>
+<li>Pitch deck export to PDF or PowerPoint</li>
+<li>Email/notification features</li>
+<li>Payment or subscription gating</li>
+<li>Admin panel or analytics</li>
+</ul>
+<hr />
+<h2 id="further-notes">Further Notes</h2>
+<ul>
+<li>The framework is intentionally built around a photography business
+as the running example. The LLM prompt must make clear this is just
+illustrative — the app serves all solo founder types (coaches,
+consultants, doctors, creatives).</li>
+<li>Step 1 captures initial business context (name, industry, revenue) —
+no separate onboarding screen.</li>
+<li>The “How to do it” section is purely LLM-generated per step,
+personalized to the user’s answers. No static framework text shown.</li>
+<li>Future: when multi-user support is added, the localStorage state
+manager interface should remain identical — only the implementation
+swaps to API calls. Design the state manager with this migration in
+mind.</li>
+<li>Anthropic API key must be stored server-side only, called from a
+Next.js API route. Never expose to client bundle.</li>
+</ul>

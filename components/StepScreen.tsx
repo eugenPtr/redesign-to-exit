@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { STEPS } from "@/lib/framework-data";
-import { getState, saveStepState } from "@/lib/state";
+import { getState, saveStepState, savePitchDeck } from "@/lib/state";
 import { useStepContext } from "@/components/AppShell";
 import type { PriorStepContext } from "@/lib/prompts";
+import type { PitchDeckJSON } from "@/lib/pitch-schema";
 
 type RightPanel = "placeholder" | "loading" | "output" | "completed";
 
@@ -16,6 +17,7 @@ type Props = {
 export default function StepScreen({ stepNumber }: Props) {
   const step = useMemo(() => STEPS[stepNumber - 1], [stepNumber]);
   const { setCurrentStep } = useStepContext();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const isDemo = searchParams.get("demo") === "true";
 
@@ -23,6 +25,14 @@ export default function StepScreen({ stepNumber }: Props) {
   const [rightPanel, setRightPanel] = useState<RightPanel>("placeholder");
   const [designMove, setDesignMove] = useState("");
   const [howToDoIt, setHowToDoIt] = useState<string[]>([]);
+  const designMoveRef = useRef<HTMLTextAreaElement>(null);
+
+  useLayoutEffect(() => {
+    const el = designMoveRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [designMove]);
 
   useEffect(() => {
     const saved = getState().steps[stepNumber];
@@ -116,16 +126,11 @@ export default function StepScreen({ stepNumber }: Props) {
   }, [stepNumber, rightPanel, allAnswered]);
 
   if (!step) {
-    return (
-      <section className="flex flex-1 items-center justify-center p-12">
-        <p className="text-sm text-brand-text">
-          Step {stepNumber} — framework data coming soon.
-        </p>
-      </section>
-    );
+    return <GeneratePitchDeck onBack={() => setCurrentStep(16)} onNavigate={() => router.push("/pitch-deck")} />;
   }
 
   const stepBadge = String(step.number).padStart(2, "0");
+
   const isCompleted = rightPanel === "completed";
 
   const canContinue = rightPanel === "output" || rightPanel === "completed";
@@ -228,10 +233,15 @@ export default function StepScreen({ stepNumber }: Props) {
                   Design Move
                 </p>
                 <textarea
+                  ref={designMoveRef}
                   value={designMove}
-                  onChange={(e) => setDesignMove(e.target.value)}
+                  onChange={(e) => {
+                    setDesignMove(e.target.value);
+                    const el = e.target;
+                    el.style.height = "auto";
+                    el.style.height = `${el.scrollHeight}px`;
+                  }}
                   className="w-full resize-none overflow-hidden rounded-md border border-zinc-200 bg-white p-3 text-base font-semibold text-brand-headline focus:border-brand-headline focus:outline-none focus:ring-1 focus:ring-brand-headline"
-                  style={{ fieldSizing: "content" } as React.CSSProperties}
                 />
               </div>
 
@@ -240,7 +250,7 @@ export default function StepScreen({ stepNumber }: Props) {
                   How to Do It
                 </p>
                 <ul className="space-y-2">
-                  {howToDoIt.map((item, i) => (
+                  {howToDoIt.slice(0, 3).map((item, i) => (
                     <li key={i} className="flex gap-2 text-sm text-brand-text">
                       <span className="shrink-0 font-semibold text-brand-headline">
                         {i + 1}.
@@ -285,7 +295,7 @@ export default function StepScreen({ stepNumber }: Props) {
                   How to Do It
                 </p>
                 <ul className="space-y-2">
-                  {howToDoIt.map((item, i) => (
+                  {howToDoIt.slice(0, 3).map((item, i) => (
                     <li key={i} className="flex gap-2 text-sm text-brand-text">
                       <span className="shrink-0 font-semibold text-brand-headline">
                         {i + 1}.
@@ -317,6 +327,108 @@ export default function StepScreen({ stepNumber }: Props) {
           className="rounded-md bg-brand-headline px-4 py-2 text-sm font-medium text-white disabled:opacity-40 hover:opacity-90"
         >
           Continue →
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function GeneratePitchDeck({
+  onBack,
+  onNavigate,
+}: {
+  onBack: () => void;
+  onNavigate: () => void;
+}) {
+  const state = getState();
+  const allComplete = STEPS.every((s) => !!state.steps[s.number]?.completedAt);
+  const hasPitchDeck = !!state.pitchDeck;
+
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
+    hasPitchDeck ? "done" : "idle",
+  );
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleGenerate() {
+    setStatus("loading");
+    setErrorMsg("");
+
+    const priorSteps: PriorStepContext[] = STEPS.filter(
+      (s) => state.steps[s.number]?.designMove,
+    ).map((s) => ({
+      stepNumber: s.number,
+      title: s.title,
+      answers: state.steps[s.number].answers,
+      acceptedDesignMove: state.steps[s.number].designMove,
+    }));
+
+    try {
+      const res = await fetch("/api/pitch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ allSteps: priorSteps }),
+      });
+      const data = (await res.json()) as PitchDeckJSON & { error?: string };
+      if (!res.ok || data.error) {
+        throw new Error((data as { error?: string }).error ?? `HTTP ${res.status}`);
+      }
+      savePitchDeck(data);
+      setStatus("done");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Unknown error");
+      setStatus("error");
+    }
+  }
+
+  return (
+    <section className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col items-center justify-center gap-6 p-12">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-text">
+          All 16 steps complete
+        </p>
+        <h1 className="text-2xl font-semibold text-brand-headline text-center">
+          Ready to generate your pitch deck
+        </h1>
+        <p className="text-sm text-brand-text text-center max-w-md">
+          {allComplete
+            ? "Your answers and design moves are ready. Generate your investor pitch deck now."
+            : "Complete all 16 steps before generating the pitch deck."}
+        </p>
+
+        {status === "error" && (
+          <p className="text-sm text-red-600 max-w-md text-center">{errorMsg}</p>
+        )}
+
+        <div className="flex gap-3">
+          {allComplete && status !== "done" && (
+            <button
+              type="button"
+              onClick={handleGenerate}
+              disabled={status === "loading"}
+              className="rounded-md bg-brand-headline px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-40"
+            >
+              {status === "loading" ? "Generating…" : "Generate Pitch Deck"}
+            </button>
+          )}
+          {status === "done" && (
+            <button
+              type="button"
+              onClick={onNavigate}
+              className="rounded-md bg-brand-headline px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+            >
+              View Pitch Deck →
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between border-t border-zinc-200 px-10 py-4">
+        <button
+          type="button"
+          onClick={onBack}
+          className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium text-brand-text hover:border-zinc-300"
+        >
+          ← Back
         </button>
       </div>
     </section>

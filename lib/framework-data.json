@@ -1,0 +1,658 @@
+[
+  {
+    "number": 1,
+    "title": "Define the Business",
+    "description": "The foundation of an exitable company is a business identity that exists independently of its founder. Right now, most solo founders describe what they do in terms of themselves — 'I am a...' An investor or acquirer needs to see a company, not a person. This step reframes your identity from operator to owner.",
+    "subQuestions": [
+      {
+        "id": "current_description",
+        "question": "How do you currently describe what you do — the sentence you'd use at a networking event or on your website?",
+        "placeholder": "e.g. I'm a leadership coach helping senior executives navigate career transitions.",
+        "demoAnswer": "I am a photographer specializing in executive portraits."
+      },
+      {
+        "id": "who_you_serve",
+        "question": "Who are your clients today? Be specific — are they individuals, teams, or companies? What roles or industries?",
+        "placeholder": "e.g. Mostly individual C-suite executives, occasionally referred by HR departments. Mix of finance, tech, and consulting.",
+        "demoAnswer": "Mostly individual C-suite executives — CEOs, founders, senior partners at law and consulting firms. Occasionally referred by HR or PR contacts, but they're paying as individuals."
+      },
+      {
+        "id": "revenue",
+        "question": "What's your approximate annual revenue, and how is it currently structured (project-based, hourly, retainer)?",
+        "placeholder": "e.g. ~€80K/year, all project-based. Some clients come back but there's no formal retainer structure.",
+        "demoAnswer": "Around €30–50K per year, all project-based. No retainers, no recurring work. Every project is quoted fresh."
+      },
+      {
+        "id": "investor_view",
+        "question": "If a potential investor looked at your business today — website, LinkedIn, how you talk about yourself — what would they see?",
+        "placeholder": "e.g. They'd see a freelancer. My name is in everything. There's no brand separate from me.",
+        "demoAnswer": "They'd see a freelancer. My name is on everything — website, Instagram, LinkedIn. There's no brand that exists separately from me."
+      }
+    ],
+    "designMoveExample": "We are a premium executive portrait studio for founders, leadership teams, and companies.",
+    "howToDoItExample": [
+      "Rewrite your homepage headline to describe the company, not yourself",
+      "Replace 'I' with 'we' across your website and pitch materials",
+      "Create a company name and brand identity separate from your personal name",
+      "Update LinkedIn to position yourself as founder/CEO of [Company], not as a freelancer",
+      "Write a one-paragraph company description in third person"
+    ],
+    "exitImpact": "From person → company | ❌ Not sellable yet",
+    "pitchSlide": "Problem + positioning"
+  },
+  {
+    "number": 2,
+    "title": "Clarify the Customer",
+    "description": "Exitable businesses serve repeatable customer segments, not random individuals. Right now you're probably taking whoever comes. An acquirer needs to see a defined, reachable, repeatable customer — ideally a B2B buyer who has ongoing needs for your service.",
+    "subQuestions": [
+      {
+        "id": "client_type",
+        "question": "Who are your current clients? Are they individuals or companies? What roles or industries?",
+        "placeholder": "e.g. Individual executives, occasionally referred by HR. Mix of finance, law, and tech.",
+        "demoAnswer": "Mostly individual C-suite executives — CEOs, founders, senior partners. Occasionally referred by HR or PR contacts but they're still paying as individuals."
+      },
+      {
+        "id": "how_they_find_you",
+        "question": "How do clients find you? What's your main acquisition channel?",
+        "placeholder": "e.g. Almost entirely word of mouth. No outbound. Instagram brings a few enquiries.",
+        "demoAnswer": "Almost entirely word of mouth. No outbound strategy. They find me through LinkedIn or someone refers them."
+      },
+      {
+        "id": "deal_size",
+        "question": "What's your average deal size and how often do clients come back?",
+        "placeholder": "e.g. €500–1,500 per shoot. Maybe 15% repeat within 18 months.",
+        "demoAnswer": "€500–1,500 per shoot. Maybe 10–15% come back within 18 months. No formal retention strategy."
+      },
+      {
+        "id": "ideal_client",
+        "question": "If you could only serve one type of client going forward, who would it be and why?",
+        "placeholder": "e.g. HR or PR agencies — they'd send multiple executives at once and have ongoing needs.",
+        "demoAnswer": "HR or PR agencies. They represent multiple executives, have ongoing content needs, and would become repeat clients rather than one-offs."
+      }
+    ],
+    "designMoveExample": "We serve HR teams, PR agencies, and executive search firms with recurring visual content needs.",
+    "howToDoItExample": [
+      "Define your ideal B2B client segment in one paragraph",
+      "Audit your current client list and identify who could become repeat buyers",
+      "Create a one-page B2B client profile",
+      "Reach out to 5 HR or PR agencies with a tailored proposition",
+      "Stop quoting for anyone outside your defined segment"
+    ],
+    "exitImpact": "From occasional → repeat buyers | ⚠️ More stable demand",
+    "pitchSlide": "Customer segments"
+  },
+  {
+    "number": 3,
+    "title": "Productize the Offer",
+    "description": "A custom service cannot be sold — it's too dependent on negotiation, founder judgment, and bespoke delivery. An exitable business sells defined products with known inputs, outputs, and prices. Productizing means the client knows exactly what they're buying before they talk to you.",
+    "subQuestions": [
+      {
+        "id": "current_delivery",
+        "question": "What does a typical engagement look like today? Walk me through the process from first contact to delivery.",
+        "placeholder": "e.g. Client reaches out, I quote a custom price, we book a date, I shoot and deliver edited photos 1–2 weeks later.",
+        "demoAnswer": "Client reaches out, we chat about their needs, I quote a custom price, we book a shoot day, I deliver edited photos 1–2 weeks later. Every engagement is different."
+      },
+      {
+        "id": "current_pricing",
+        "question": "How do you price today — day rates, hourly, per-image, or custom quotes?",
+        "placeholder": "e.g. Mostly day rates. €500 half-day, €900 full day, plus editing.",
+        "demoAnswer": "Day rates — €500 for a half-day, €900 for a full day, plus editing time. Sometimes per-image for smaller requests."
+      },
+      {
+        "id": "package_attempts",
+        "question": "Have you ever tried offering fixed packages or standardized deliverables? What happened?",
+        "placeholder": "e.g. I've thought about it but clients always have different needs so I quote custom.",
+        "demoAnswer": "I've thought about it but never formalized anything. Clients seem to have different needs each time so I always quote custom."
+      },
+      {
+        "id": "highest_revenue_offer",
+        "question": "What's your most common or highest-revenue type of engagement right now?",
+        "placeholder": "e.g. Full-day executive shoot with editing — €900–1,200 total.",
+        "demoAnswer": "Full-day executive shoots with full editing — usually €900–1,200 all in. That's the most common job."
+      }
+    ],
+    "designMoveExample": "Three fixed packages: Founder Day (€3K), Team Package (€6K), Content Kit (€10K).",
+    "howToDoItExample": [
+      "Design 3 fixed packages with clear deliverables and prices",
+      "Remove custom quoting from your website",
+      "Test your pricing with 5 existing clients before publishing",
+      "Create a one-page package sheet you can send to any enquiry",
+      "Practice saying 'we don't do custom' to new enquiries"
+    ],
+    "exitImpact": "From custom → repeatable product | ✅ Predictability ↑",
+    "pitchSlide": "Business model"
+  },
+  {
+    "number": 4,
+    "title": "Build Delivery Systems",
+    "description": "A business that runs on founder memory and improvisation cannot be transferred. Delivery systems — SOPs, templates, checklists, tools — make your business teachable, repeatable, and eventually replaceable. Without them, you don't have a business, you have a skill.",
+    "subQuestions": [
+      {
+        "id": "delivery_walkthrough",
+        "question": "Walk me through exactly how a project gets delivered — from booking confirmation to final file handoff.",
+        "placeholder": "e.g. Client brief by phone → gear prep → shoot → cull in Lightroom → edit → WeTransfer delivery. 2–3 days total.",
+        "demoAnswer": "Client brief by phone, gear prep, shoot, cull in Lightroom, full edit, deliver via WeTransfer. About 2–3 days of work total per project."
+      },
+      {
+        "id": "handover_risk",
+        "question": "What would break first if you hired someone to take over a shoot tomorrow?",
+        "placeholder": "e.g. My editing style is mine. My client communication is mine. There's no brief they could follow.",
+        "demoAnswer": "Everything. My editing style, how I brief clients, how I handle on-site direction — none of it is written down."
+      },
+      {
+        "id": "documentation",
+        "question": "Are any of your workflows documented? Checklists, shoot briefs, editing presets, delivery templates?",
+        "placeholder": "e.g. Nothing written down. It's all in my head.",
+        "demoAnswer": "Nothing is written down. I have Lightroom presets but the entire process is in my head."
+      },
+      {
+        "id": "time_drain",
+        "question": "Where do you spend the most time in delivery that isn't the actual shoot?",
+        "placeholder": "e.g. Editing — 6–8 hours per shoot. And client back-and-forth on revisions.",
+        "demoAnswer": "Editing. Probably 6–8 hours per project. And client communication around revisions and delivery."
+      }
+    ],
+    "designMoveExample": "Every project follows the same SOP: brief template, shoot checklist, edit preset, delivery system.",
+    "howToDoItExample": [
+      "Document your shoot checklist step-by-step — from gear pack to wrap",
+      "Write a client brief template that works without a phone call",
+      "Package your editing presets as documented, transferable IP",
+      "Create a delivery protocol: folder structure, file naming, handoff process",
+      "Test: could a competent professional follow your SOP without you present?"
+    ],
+    "exitImpact": "From talent → system | ✅ Transferable ops",
+    "pitchSlide": "Operations slide"
+  },
+  {
+    "number": 5,
+    "title": "Clarify Founder's Role",
+    "description": "Every hour you spend executing is an hour not spent building. Founders who are also the primary delivery mechanism become the ceiling of their own business. This step forces clarity on what only you should do versus what the business should do — and begins separating the two.",
+    "subQuestions": [
+      {
+        "id": "week_breakdown",
+        "question": "What does a typical work week look like? How much time on delivery vs admin vs sales vs strategy?",
+        "placeholder": "e.g. 2–3 shoot days, rest is editing, emails, invoicing, social. About 60% execution, 40% admin.",
+        "demoAnswer": "2–3 shoot days a week, then editing, client emails, invoicing, some Instagram. About 60% execution, 40% admin and business development."
+      },
+      {
+        "id": "only_you",
+        "question": "Which parts of the business could only you do right now? Which could theoretically be handed off?",
+        "placeholder": "e.g. Only I can shoot well. Everything else — admin, editing, invoicing — could be delegated but isn't.",
+        "demoAnswer": "Only I can shoot to my standard right now. Editing, admin, invoicing, and social media could theoretically be handed off."
+      },
+      {
+        "id": "disappear_test",
+        "question": "If you disappeared for a month, what would break and what would keep running?",
+        "placeholder": "e.g. Everything breaks. No shoots booked, no editing done, no client comms.",
+        "demoAnswer": "Everything breaks. No shoots would happen, no invoices go out, no clients managed. The business stops entirely."
+      },
+      {
+        "id": "future_role",
+        "question": "What part of the work do you genuinely want to still be doing in 3 years?",
+        "placeholder": "e.g. Creative direction and key client relationships. Not every shoot.",
+        "demoAnswer": "Creative direction and key client relationships. I'd like to stop being the person holding the camera at every single shoot."
+      }
+    ],
+    "designMoveExample": "Founder = creative director and sales lead. All execution handled by team and systems.",
+    "howToDoItExample": [
+      "List every task you did last week and mark which only you can do",
+      "Move one recurring execution task off your plate this month",
+      "Write your own role description as if you were hiring a founder",
+      "Block 4 hours/week for business development only — protect it",
+      "Track how your time splits between execution vs building each week"
+    ],
+    "exitImpact": "From operator → builder | ⚠️ Reduces key-man risk",
+    "pitchSlide": "Team / org slide"
+  },
+  {
+    "number": 6,
+    "title": "Add Team Capacity",
+    "description": "You cannot scale a business you're the only person in. Adding team capacity — even one trained person — multiplies your throughput, proves the business is teachable, and removes the hard ceiling on revenue. This is where the business starts to feel real.",
+    "subQuestions": [
+      {
+        "id": "team_experience",
+        "question": "Have you ever worked with other people on a project — freelancers, assistants, or contractors?",
+        "placeholder": "e.g. Once with an assistant on a large shoot. Never another photographer under my brand.",
+        "demoAnswer": "Once or twice I've brought in an assistant for larger shoots, but never another photographer delivering work under my brand."
+      },
+      {
+        "id": "hiring_barrier",
+        "question": "What's the biggest barrier to bringing on your first hire today?",
+        "placeholder": "e.g. I don't have a documented process they could follow. And I'm not sure clients would accept someone who isn't me.",
+        "demoAnswer": "I don't have a documented process they could follow. And I'm not confident clients would accept someone other than me."
+      },
+      {
+        "id": "first_delegation",
+        "question": "If you had one trained person working under your brand tomorrow, what work would you give them?",
+        "placeholder": "e.g. Standard executive headshots — single subjects in an office. The routine, repeatable work.",
+        "demoAnswer": "Standard individual executive headshots — single subjects in a studio or office. The repeatable, lower-complexity shoots."
+      },
+      {
+        "id": "quality_standard",
+        "question": "Can you describe your quality standard in writing — what does a successful delivery look like?",
+        "placeholder": "e.g. I couldn't write it down precisely today. It's intuitive. That's the problem.",
+        "demoAnswer": "Honestly, I couldn't write it down precisely today. It's intuitive — I'd know it when I see it. That's the problem."
+      }
+    ],
+    "designMoveExample": "A team of 3+ photographers and editors delivers under the brand with full quality control.",
+    "howToDoItExample": [
+      "Write the job description for your first hire this week",
+      "Identify one person you could trial on a low-stakes project",
+      "Create a quality benchmark: 10 examples of 'this is what we deliver'",
+      "Design a simple training and QA process before they start",
+      "Book a project and let them deliver it — you review only"
+    ],
+    "exitImpact": "From capacity ceiling → scalable delivery | ✅ Capacity scales",
+    "pitchSlide": "Team slide"
+  },
+  {
+    "number": 7,
+    "title": "Create Recurring Revenue",
+    "description": "One-off projects create one-off revenue. Exitable businesses have predictable, recurring income — because acquirers value certainty. A recurring revenue base doesn't just improve cash flow, it changes your valuation multiple entirely.",
+    "subQuestions": [
+      {
+        "id": "recurring_today",
+        "question": "How many current clients are on any kind of ongoing arrangement? What percentage of your revenue is recurring?",
+        "placeholder": "e.g. Zero. Every project is one-off. Some clients come back but there's no contract or commitment.",
+        "demoAnswer": "Zero. Every project is completely one-off. Some clients come back every 6–12 months but there's no contract, no commitment, no predictability."
+      },
+      {
+        "id": "retainer_attempts",
+        "question": "Have you ever offered a retainer, subscription, or ongoing contract? What was the response?",
+        "placeholder": "e.g. Never formally. I've hinted at ongoing work but never priced it or put it in writing.",
+        "demoAnswer": "Never formally. I've mentioned ongoing work to a few clients but never structured or priced it properly."
+      },
+      {
+        "id": "recurring_candidate",
+        "question": "What type of client would most benefit from regular content — and who might actually pay for it on contract?",
+        "placeholder": "e.g. Companies with active PR or IR teams. They refresh headshots, shoot events, produce leadership content regularly.",
+        "demoAnswer": "Companies with active PR or investor relations teams. They're constantly refreshing leadership content, team photos, event coverage."
+      },
+      {
+        "id": "retainer_design",
+        "question": "If you were to design a simple annual retainer right now, what would it include and at what price?",
+        "placeholder": "e.g. 4 quarterly sessions — team and executive updates — at €3K each. €12K/year total.",
+        "demoAnswer": "4 quarterly sessions — team headshots, executive updates, content for social. €3K per session. Around €12K per year."
+      }
+    ],
+    "designMoveExample": "40% of revenue is recurring through annual retainers at €12K/year per client.",
+    "howToDoItExample": [
+      "Identify 5 existing clients who could benefit from quarterly content",
+      "Design a simple retainer offer with 3 tiers",
+      "Price the retainer to reward commitment — not punish the client",
+      "Send a retainer proposal to 3 clients this month",
+      "Build a dashboard tracking % recurring vs one-off revenue"
+    ],
+    "exitImpact": "From unpredictable → predictable | ✅ Predictability ↑↑",
+    "pitchSlide": "Traction + revenue"
+  },
+  {
+    "number": 8,
+    "title": "Build Transferable Assets",
+    "description": "If your business disappeared tomorrow, what would remain? A sellable business has assets that exist independently of the founder: a brand, a client database, documented IP, contracts, systems. This step inventories what you have and identifies what needs to be formalized.",
+    "subQuestions": [
+      {
+        "id": "what_buyer_gets",
+        "question": "What would a buyer of your business actually receive today — not what you'd like to have, what actually exists?",
+        "placeholder": "e.g. My portfolio, my Instagram, my personal reputation. Nothing formally structured or transferable.",
+        "demoAnswer": "My portfolio, my Instagram following, and my personal reputation. Nothing formally structured or legally transferable."
+      },
+      {
+        "id": "client_database",
+        "question": "How is your client information stored? Do you have a CRM or client database?",
+        "placeholder": "e.g. Phone contacts and email threads. Client history lives in my memory.",
+        "demoAnswer": "Phone contacts and email threads. No CRM. Client history and preferences live entirely in my memory."
+      },
+      {
+        "id": "ip_assets",
+        "question": "What intellectual property have you created — presets, workflows, brand assets, templates, methodology?",
+        "placeholder": "e.g. Custom Lightroom presets I've built over 5 years. That's probably the only transferable IP.",
+        "demoAnswer": "Custom Lightroom presets I've developed over 5 years. That's probably the only thing that could be called transferable IP today."
+      },
+      {
+        "id": "value_proof",
+        "question": "What's the strongest evidence that your business has value beyond your personal talent?",
+        "placeholder": "e.g. 100+ executive shoots for recognizable companies. Strong portfolio documentation.",
+        "demoAnswer": "100+ completed executive shoots for recognizable Romanian companies. The portfolio quality is documented and consistent."
+      }
+    ],
+    "designMoveExample": "Transferable assets: brand, 100+ client contracts, proprietary workflow system, Lightroom IP.",
+    "howToDoItExample": [
+      "Build a CRM — even a spreadsheet is a start",
+      "Trademark your studio name and core brand assets",
+      "Formalize your Lightroom presets as documented, named IP",
+      "Get signed contracts and NDAs from all active clients",
+      "Create a one-page asset inventory: what we own, where it lives"
+    ],
+    "exitImpact": "From personal → assets | ✅ Sellable foundation",
+    "pitchSlide": "Moat / defensibility"
+  },
+  {
+    "number": 9,
+    "title": "Reduce Founder Dependency",
+    "description": "The defining test of an exitable business: can it operate without you? Right now your clients probably want you specifically. This step measures your key-person risk and identifies what changes are needed to transfer client trust from you to the brand.",
+    "subQuestions": [
+      {
+        "id": "client_request",
+        "question": "When clients book, do they ask for you specifically or are they buying the studio's output?",
+        "placeholder": "e.g. Always by name. 'We want you' is literally what they say.",
+        "demoAnswer": "Always by name. 'We want Gia specifically' is what they say. The brand is completely tied to me personally."
+      },
+      {
+        "id": "why_chosen",
+        "question": "When a client chose you over alternatives recently, what was their stated reason?",
+        "placeholder": "e.g. 'We've worked with you before and trust you.' They've never tried anyone else.",
+        "demoAnswer": "A PR agency last month said 'we've worked with you before and we trust you.' They've never used another photographer."
+      },
+      {
+        "id": "transfer_conditions",
+        "question": "What would need to be true for a client to be equally happy working with someone you trained?",
+        "placeholder": "e.g. Same quality, same communication style, same brief process. And time — trust takes years.",
+        "demoAnswer": "Consistent quality, same communication style, same briefing process — and time. Trust built with me over years can't transfer instantly."
+      },
+      {
+        "id": "keyman_score",
+        "question": "On a scale of 1–10, how high is your key-person risk? What would it take to get to a 5?",
+        "placeholder": "e.g. 10/10 today. To get to 5: documented process, trained team, brand that clients trust independently.",
+        "demoAnswer": "10 out of 10. If I stopped tomorrow the business stops. To get to 5: trained team, documented process, and a brand clients trust independently of me."
+      }
+    ],
+    "designMoveExample": "Over 70% of projects delivered without founder involvement. Clients trust the brand.",
+    "howToDoItExample": [
+      "Introduce your top 10 clients to a team member — by name, in writing",
+      "Replace your name on client emails with studio branding",
+      "Have a team member lead one full client project from brief to delivery",
+      "Measure: what % of projects complete without you this month?",
+      "Credit the studio publicly — not yourself — for every win"
+    ],
+    "exitImpact": "From 'you' → company | ✅ Exit-ready structure",
+    "pitchSlide": "Org structure"
+  },
+  {
+    "number": 10,
+    "title": "Show Market Expansion",
+    "description": "A local service business has limited value. An investor or acquirer needs to see a path to a larger market — regional, national, or beyond. This step establishes where you are geographically today and maps out how the business could credibly expand.",
+    "subQuestions": [
+      {
+        "id": "geographic_revenue",
+        "question": "What percentage of your revenue comes from outside your city? Outside your country?",
+        "placeholder": "e.g. 100% from one city. I've had one request from elsewhere but turned it down.",
+        "demoAnswer": "100% Bucharest. I've had one enquiry from Cluj and turned it down because of travel logistics. Zero international."
+      },
+      {
+        "id": "expansion_barriers",
+        "question": "What's stopping you from serving clients in other cities or countries right now?",
+        "placeholder": "e.g. Travel costs, logistics, and I haven't marketed beyond my city.",
+        "demoAnswer": "Travel costs and logistics. And I've never marketed outside Romania or built any presence in other markets."
+      },
+      {
+        "id": "adjacent_markets",
+        "question": "Which adjacent markets could your offer expand into without major structural changes?",
+        "placeholder": "e.g. Other regional capitals — similar corporate density, similar demand.",
+        "demoAnswer": "Other CEE capitals — Warsaw, Budapest, Prague. Similar corporate density, similar demand for executive branding content, similar pricing sensitivity."
+      },
+      {
+        "id": "tam_view",
+        "question": "How would you describe the total market for your offer — locally and at scale?",
+        "placeholder": "e.g. Every company with a leadership team needs this. Locally it's a few million, regionally it's much larger.",
+        "demoAnswer": "Every company with a leadership team needs this content. In CEE alone there are tens of thousands of companies refreshing leadership content regularly."
+      }
+    ],
+    "designMoveExample": "Regional executive branding studio operating across CEE — Romania, Poland, Hungary.",
+    "howToDoItExample": [
+      "List 3 target markets with similar corporate density to yours",
+      "Research one potential local partner per market (agency, co-working, recruiter)",
+      "Create a market entry one-pager: TAM, target clients, entry strategy",
+      "Run one paid campaign in a new city and measure response",
+      "Make first contact with one potential regional partner this month"
+    ],
+    "exitImpact": "From niche → category | 🚀 Strategic value ↑",
+    "pitchSlide": "Market expansion"
+  },
+  {
+    "number": 11,
+    "title": "Build a Scalable Layer",
+    "description": "Pure service businesses have a revenue ceiling — you can only deliver so much with people. Adding a scalable layer (software, platform, or productized IP) breaks that ceiling and dramatically changes your valuation multiple from service company to tech-enabled business.",
+    "subQuestions": [
+      {
+        "id": "digital_delivery",
+        "question": "Is there any part of your offer that could be delivered digitally or without you physically present?",
+        "placeholder": "e.g. Not currently. Everything requires me on location.",
+        "demoAnswer": "Not currently. Everything requires me physically on location with equipment."
+      },
+      {
+        "id": "platform_thoughts",
+        "question": "Have you considered building any tools, templates, or platforms — for clients or for your own operations?",
+        "placeholder": "e.g. I've thought about a client portal or AI-assisted editing. Never built anything.",
+        "demoAnswer": "I've thought about an AI-enhanced editing service and a client portal for briefs and delivery, but never built either."
+      },
+      {
+        "id": "tech_bottleneck",
+        "question": "What's the biggest operational bottleneck that technology could realistically solve?",
+        "placeholder": "e.g. Editing time and client communication. Both are manual and slow.",
+        "demoAnswer": "Editing time and client communication back-and-forth. Both are completely manual and slow."
+      },
+      {
+        "id": "scale_without_time",
+        "question": "If you had to double revenue without doubling your time, what would you build or buy?",
+        "placeholder": "e.g. A booking and content management system. Clients self-brief, team delivers, AI does first-pass editing.",
+        "demoAnswer": "A booking and content management system — clients self-brief, my team handles delivery, AI handles first-pass editing. I'd just QA."
+      }
+    ],
+    "designMoveExample": "Platform layer: client portal for booking, brief management, and AI-assisted content delivery.",
+    "howToDoItExample": [
+      "Map the 3 biggest manual bottlenecks in your current delivery process",
+      "Identify one off-the-shelf tool that could replace each bottleneck",
+      "Scope a simple client portal MVP: booking + brief + delivery",
+      "Find a technical partner or agency to build it",
+      "Test with 5 clients before full rollout"
+    ],
+    "exitImpact": "From service → platform | 🚀 VC potential",
+    "pitchSlide": "Product + vision"
+  },
+  {
+    "number": 12,
+    "title": "Define the Exit Scenario",
+    "description": "Most founders never think concretely about exit — they assume it happens 'eventually'. But building a business that's sellable requires knowing who would buy it, at what valuation, and what needs to be true to get there. This step builds your exit thesis.",
+    "subQuestions": [
+      {
+        "id": "exit_vision",
+        "question": "Have you thought about what selling your business would look like? What does exit mean to you?",
+        "placeholder": "e.g. Vaguely. I know it's not sellable right now because it's just me.",
+        "demoAnswer": "I've thought about it vaguely. I know it's not sellable right now because it's just me. There's nothing to sell except my personal reputation."
+      },
+      {
+        "id": "buyer_type",
+        "question": "What type of acquirer would make the most strategic sense — agency, tech company, media group, HR platform?",
+        "placeholder": "e.g. A PR or communications agency. They already serve our clients and need content production.",
+        "demoAnswer": "A PR or communications agency makes most sense. They already serve our clients and would benefit from owning a content production arm."
+      },
+      {
+        "id": "exit_conditions",
+        "question": "What would need to be true about your business for a strategic buyer to be genuinely interested?",
+        "placeholder": "e.g. Consistent revenue, a team that runs without me, a recognizable brand. None of those exist yet.",
+        "demoAnswer": "Consistent revenue, a team that runs without me, a recognizable brand independent of my name. None of those exist yet."
+      },
+      {
+        "id": "exit_timeline",
+        "question": "What's your personal timeline — when would you want to be exit-ready, and what revenue milestone matters?",
+        "placeholder": "e.g. 3–5 years. I'd want to be at €500K+ revenue with a real team first.",
+        "demoAnswer": "Realistically 3–5 years. I'd want to reach €500K+ in revenue with an actual team and systems before considering it."
+      }
+    ],
+    "designMoveExample": "Exit target: acquisition by PR agency or HR tech platform at 1–3x revenue within 5 years.",
+    "howToDoItExample": [
+      "Research 5 companies who could realistically acquire you",
+      "Write a one-paragraph acquisition story for each buyer type",
+      "Identify what your business needs to look like for each buyer",
+      "Set a revenue and structure milestone that triggers exit readiness",
+      "Begin relationship-building with one potential acquirer now"
+    ],
+    "exitImpact": "From self-employment → asset sale | 🎯 Fully exitable",
+    "pitchSlide": "Exit strategy"
+  },
+  {
+    "number": 13,
+    "title": "Choose Your Investors",
+    "description": "Not all capital is equal. The right investor brings more than money — they bring networks, distribution, and credibility. The wrong investor creates pressure without value. This step clarifies what you actually need and what the ideal funding partner looks like.",
+    "subQuestions": [
+      {
+        "id": "funding_history",
+        "question": "Have you ever raised external capital or worked with investors? What's your current relationship with funding?",
+        "placeholder": "e.g. No. Fully self-funded. I don't know much about how fundraising works.",
+        "demoAnswer": "No. Fully self-funded since the beginning. I don't have much knowledge or experience with fundraising."
+      },
+      {
+        "id": "funding_use",
+        "question": "If you had €500K in growth capital today, what would you specifically spend it on?",
+        "placeholder": "e.g. 3 photographers, 1 editor, a booking platform, 12 months of market expansion.",
+        "demoAnswer": "3 photographers, 1 editor, building a booking platform, and 12 months of marketing to expand into 2–3 new markets."
+      },
+      {
+        "id": "strategic_value",
+        "question": "Beyond money, what kind of investor would add the most value — what networks or expertise matter most?",
+        "placeholder": "e.g. Someone connected to PR agencies, HR networks, or media companies. Distribution matters more than capital.",
+        "demoAnswer": "Someone connected to PR agencies, HR tech, or media companies. Strategic distribution access matters more than the capital itself."
+      },
+      {
+        "id": "funding_structure",
+        "question": "What's your preferred funding structure — equity, convertible note, loan, or revenue share?",
+        "placeholder": "e.g. Equity for the right strategic partner. 15–20% for someone who opens real doors.",
+        "demoAnswer": "Equity for the right strategic partner. I'd give up 15–20% for someone who genuinely opens doors, not just writes a cheque."
+      }
+    ],
+    "designMoveExample": "Strategic investors from media, HR, or content distribution networks as growth partners.",
+    "howToDoItExample": [
+      "List 10 investor types whose portfolio companies would benefit from your service",
+      "Research 3 CEE-based family offices or angels active in creative/tech",
+      "Write a one-paragraph investment thesis for your business",
+      "Define what 'smart money' means for your specific growth path",
+      "Attend one investor or founder event in the next 30 days"
+    ],
+    "exitImpact": "From funding → partnership | ✅ Better exit odds",
+    "pitchSlide": "Funding strategy"
+  },
+  {
+    "number": 14,
+    "title": "Build AI Defensibility",
+    "description": "AI is commoditizing the bottom of most creative markets. The question isn't whether AI affects your business — it's whether your business sits above the commoditization line. This step defines what makes you defensible and how to reinforce that position.",
+    "subQuestions": [
+      {
+        "id": "ai_threat",
+        "question": "How is AI already affecting your market? What do you think happens to your business in the next 3 years?",
+        "placeholder": "e.g. AI headshots exist at €30. But premium executive branding with real presence isn't commoditized yet.",
+        "demoAnswer": "AI headshots already exist for €30. It affects the low end. But premium executive branding — real people, consistent brand presence — clients still want humans for that."
+      },
+      {
+        "id": "human_advantage",
+        "question": "What does a client get from working with you that AI genuinely cannot replicate?",
+        "placeholder": "e.g. Trust, relationship, directing a nervous CEO, brand consistency across a full leadership team.",
+        "demoAnswer": "Trust, relationship, on-brand consistency across an executive team, and the ability to actually direct a nervous CEO in a real shoot."
+      },
+      {
+        "id": "pricing_position",
+        "question": "Where does your pricing sit relative to AI tools and low-cost alternatives?",
+        "placeholder": "e.g. Premium — €500–1,500 per session vs €30 for AI. We're not competing there.",
+        "demoAnswer": "Premium — €500–1,500 per session versus €30 for AI-generated headshots. We're not competing in the commodity tier."
+      },
+      {
+        "id": "moat_statement",
+        "question": "How would you describe your competitive advantage in one sentence?",
+        "placeholder": "e.g. Brand-consistent executive presence that stock imagery and AI can't replicate.",
+        "demoAnswer": "We deliver brand-consistent executive presence that stock imagery and AI tools simply cannot replicate."
+      }
+    ],
+    "designMoveExample": "Premium brand + proprietary system + relationships = defensible against AI commoditization.",
+    "howToDoItExample": [
+      "Audit your offer: which parts could AI replace in 3 years?",
+      "Double down on what AI can't replicate: relationships, direction, consistency",
+      "Move pricing upmarket — make your premium positioning explicit",
+      "Integrate AI tools into your workflow to stay ahead (editing, brief automation)",
+      "Write your moat statement — one sentence for your pitch deck"
+    ],
+    "exitImpact": "From commodity → premium system | ✅ Defensible",
+    "pitchSlide": "Competitive advantage"
+  },
+  {
+    "number": 15,
+    "title": "Long-term Performance Check",
+    "description": "A business built to exit needs to be built to last. KPI-driven management — tracking LTV, CAC, margin, and retention — tells investors your business is run with intention, not intuition. This step benchmarks where you are and where a healthy version of this business sits.",
+    "subQuestions": [
+      {
+        "id": "current_metrics",
+        "question": "What business metrics do you track today beyond revenue and volume?",
+        "placeholder": "e.g. Revenue and shoots per month. That's it. No LTV, no retention rate, no margin tracking.",
+        "demoAnswer": "Revenue and number of shoots per month. That's all I track. No LTV, no CAC, no retention rate, no margin analysis."
+      },
+      {
+        "id": "retention_ltv",
+        "question": "What's your estimated client retention rate? Do you know your average client lifetime value?",
+        "placeholder": "e.g. Maybe 20–25% return within 18 months. No idea what lifetime value is.",
+        "demoAnswer": "I'd estimate 20–25% come back within 18 months. I've never calculated lifetime value formally."
+      },
+      {
+        "id": "healthy_benchmark",
+        "question": "What does a well-run version of this business look like in numbers — revenue, margin, retention, team?",
+        "placeholder": "e.g. 70%+ retention, 50%+ margins, €1M+ revenue, 3+ team members.",
+        "demoAnswer": "€1M+ revenue, 50%+ gross margins, 70%+ client retention, 3+ person team. That's what healthy looks like to me."
+      },
+      {
+        "id": "north_star",
+        "question": "If you could only track one KPI to know if the business is healthy, what would it be?",
+        "placeholder": "e.g. Client retention. If clients come back, everything else follows.",
+        "demoAnswer": "Client retention rate. If clients keep coming back, everything else — revenue, margins, referrals — tends to follow."
+      }
+    ],
+    "designMoveExample": "KPI dashboard: 70%+ retention, 50%+ margin, 20%+ annual growth, LTV tracked per segment.",
+    "howToDoItExample": [
+      "Calculate your current gross margin per project type",
+      "Build a simple retention tracking spreadsheet — even in Excel",
+      "Define LTV for your top 3 client segments",
+      "Set quarterly targets for your 4 core KPIs",
+      "Review metrics monthly — the number is a signal, not a judgment"
+    ],
+    "exitImpact": "From activity → performance | ✅ Sustainable value",
+    "pitchSlide": "Metrics"
+  },
+  {
+    "number": 16,
+    "title": "Make the Ask",
+    "description": "An investment ask is the culmination of every previous step. It requires knowing exactly how much you need, what you'll use it for, and what milestone you're funding toward. Vague asks signal that the business isn't ready. A precise ask signals a founder who knows what they're doing.",
+    "subQuestions": [
+      {
+        "id": "capital_amount",
+        "question": "How much capital would you need to reach your next meaningful milestone, and how did you arrive at that number?",
+        "placeholder": "e.g. €500K — 12 months of team salaries, platform development, and marketing expansion.",
+        "demoAnswer": "Around €500K–€1M. I'd need 12 months of team costs, platform development, and marketing to expand into 2–3 new markets."
+      },
+      {
+        "id": "use_of_funds",
+        "question": "What would you spend the capital on specifically — be as concrete as possible.",
+        "placeholder": "e.g. 3 photographers, 1 editor, booking platform build, 12 months of market expansion marketing.",
+        "demoAnswer": "3 photographers, 1 editor, a booking and content management platform, and 12 months of marketing to enter Warsaw, Budapest, and Prague."
+      },
+      {
+        "id": "funded_milestone",
+        "question": "What is the milestone an investor would be funding toward — what does success look like at the end of this round?",
+        "placeholder": "e.g. €500K ARR, 50+ retainer clients, operational without founder on-set.",
+        "demoAnswer": "€500K+ in annual revenue, 50+ retainer clients, and the business running operationally without me on set for every shoot."
+      },
+      {
+        "id": "investor_offer",
+        "question": "What are you offering investors in return — equity percentage, convertible note, revenue share?",
+        "placeholder": "e.g. 15–20% equity, or a convertible note at a reasonable cap. Depends on the partner.",
+        "demoAnswer": "15–20% equity for the right strategic partner. Open to a convertible note structure if it accelerates the path to partnership."
+      }
+    ],
+    "designMoveExample": "Raising €1M to expand regionally, build platform layer, and reach €1M ARR by 2027.",
+    "howToDoItExample": [
+      "Build a 12-month financial model with the capital deployed",
+      "Write a one-paragraph use-of-funds statement",
+      "Define the milestone this round funds toward — one clear sentence",
+      "Identify 10 specific investors to approach in priority order",
+      "Prepare your ask slide: amount, use, milestone, structure, return thesis"
+    ],
+    "exitImpact": "From project → investment case | 🚀 Scale + exit optionality",
+    "pitchSlide": "Ask slide"
+  }
+]
