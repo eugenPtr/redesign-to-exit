@@ -1,4 +1,4 @@
-import { STEPS } from "@/lib/framework-data";
+import { getSteps } from "@/lib/get-steps";
 import { callStepAdvisor } from "@/lib/llm-client";
 import {
   buildStepPrompt,
@@ -24,7 +24,8 @@ export async function POST(request: Request) {
     return Response.json({ error: "stepNumber required" }, { status: 400 });
   }
 
-  const stepDef = STEPS.find((s) => s.number === stepNumber);
+  const steps = await getSteps();
+  const stepDef = steps.find((s) => s.number === stepNumber);
   if (!stepDef) {
     return Response.json(
       {

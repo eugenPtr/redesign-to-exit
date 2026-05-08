@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { STEPS } from "@/lib/framework-data";
+import { useSteps } from "@/components/StepsProvider";
 import { getState, saveStepState, savePitchDeck } from "@/lib/state";
 import { useStepContext } from "@/components/AppShell";
 import type { PriorStepContext } from "@/lib/prompts";
@@ -15,7 +15,8 @@ type Props = {
 };
 
 export default function StepScreen({ stepNumber }: Props) {
-  const step = useMemo(() => STEPS[stepNumber - 1], [stepNumber]);
+  const steps = useSteps();
+  const step = useMemo(() => steps[stepNumber - 1], [steps, stepNumber]);
   const { setCurrentStep } = useStepContext();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -67,7 +68,7 @@ export default function StepScreen({ stepNumber }: Props) {
     setRightPanel("loading");
 
     const state = getState();
-    const priorContext: PriorStepContext[] = STEPS.filter(
+    const priorContext: PriorStepContext[] = steps.filter(
       (s) => s.number < stepNumber && state.steps[s.number]?.designMove,
     ).map((s) => ({
       stepNumber: s.number,
@@ -340,8 +341,9 @@ function GeneratePitchDeck({
   onBack: () => void;
   onNavigate: () => void;
 }) {
+  const steps = useSteps();
   const state = getState();
-  const allComplete = STEPS.every((s) => !!state.steps[s.number]?.completedAt);
+  const allComplete = steps.every((s) => !!state.steps[s.number]?.completedAt);
   const hasPitchDeck = !!state.pitchDeck;
 
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
@@ -353,7 +355,7 @@ function GeneratePitchDeck({
     setStatus("loading");
     setErrorMsg("");
 
-    const priorSteps: PriorStepContext[] = STEPS.filter(
+    const priorSteps: PriorStepContext[] = steps.filter(
       (s) => state.steps[s.number]?.designMove,
     ).map((s) => ({
       stepNumber: s.number,

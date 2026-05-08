@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import { STEPS } from "@/lib/framework-data";
+import { useSteps } from "@/components/StepsProvider";
 import { getState, type AppState } from "@/lib/state";
 
 type StepStatus = "locked" | "active" | "completed";
@@ -28,8 +28,8 @@ function reachable(stepNumber: number, state: AppState): boolean {
   return Boolean(state.steps[stepNumber - 1]?.designMove);
 }
 
-function titleFor(stepNumber: number): string {
-  return STEPS[stepNumber - 1]?.title ?? `Step ${stepNumber}`;
+function titleFor(steps: ReturnType<typeof useSteps>, stepNumber: number): string {
+  return steps[stepNumber - 1]?.title ?? `Step ${stepNumber}`;
 }
 
 const stripedDone =
@@ -37,6 +37,7 @@ const stripedDone =
 const solidLocked = "bg-zinc-200";
 
 export default function StepProgress({ currentStep, onSelectStep }: Props) {
+  const steps = useSteps();
   const [state, setState] = useState<AppState>({ steps: {}, pitchDeck: null });
 
   useEffect(() => {
@@ -93,15 +94,15 @@ export default function StepProgress({ currentStep, onSelectStep }: Props) {
                     canClick ? "cursor-pointer" : "cursor-not-allowed"
                   }`}
                   aria-current={status === "active" ? "step" : undefined}
-                  aria-label={`Step ${n}: ${titleFor(n)}`}
+                  aria-label={`Step ${n}: ${titleFor(steps, n)}`}
                 >
                   {status === "completed" ? "✓" : n}
                 </button>
                 <span
                   className={`mt-2 max-w-full truncate px-1 text-[10px] leading-tight ${labelStyles}`}
-                  title={titleFor(n)}
+                  title={titleFor(steps, n)}
                 >
-                  {titleFor(n)}
+                  {titleFor(steps, n)}
                 </span>
               </li>
               {!isLast && (
