@@ -34,6 +34,22 @@ async function fetchAllRecords(
   return all;
 }
 
+export async function getPrompts(): Promise<Record<string, string>> {
+  const token = process.env.AIRTABLE_API_KEY;
+  if (!token) return {};
+
+  try {
+    const fields = await fetchAllRecords("Prompts", token, "label");
+    return Object.fromEntries(
+      fields
+        .filter((f) => f.label && f.content)
+        .map((f) => [f.label as string, f.content as string]),
+    );
+  } catch {
+    return {};
+  }
+}
+
 export async function getSteps(): Promise<Step[]> {
   const token = process.env.AIRTABLE_API_KEY;
   if (!token) return STEPS;

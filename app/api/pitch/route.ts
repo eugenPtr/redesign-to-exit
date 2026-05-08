@@ -1,6 +1,7 @@
 import { callPitchGenerator } from "@/lib/llm-client";
 import { buildPitchPrompt, type PriorStepContext } from "@/lib/prompts";
 import { PitchDeckSchema } from "@/lib/pitch-schema";
+import { getPrompts } from "@/lib/get-steps";
 
 type PitchRequestBody = {
   allSteps: PriorStepContext[];
@@ -15,7 +16,8 @@ export async function POST(request: Request) {
   }
 
   const allSteps = Array.isArray(body?.allSteps) ? body.allSteps : [];
-  const prompt = buildPitchPrompt(allSteps);
+  const prompts = await getPrompts();
+  const prompt = buildPitchPrompt(allSteps, prompts);
 
   let raw: string;
   try {

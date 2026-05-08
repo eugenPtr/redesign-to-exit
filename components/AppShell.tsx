@@ -1,9 +1,10 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import StepProgress from "./StepProgress";
+import { resetState } from "@/lib/state";
 
 type StepContextValue = {
   currentStep: number;
@@ -37,6 +38,25 @@ function DemoBadge() {
   );
 }
 
+function ResetButton() {
+  const router = useRouter();
+
+  function handleReset() {
+    if (!confirm("Start from scratch? All progress will be lost.")) return;
+    resetState();
+    router.push("/");
+  }
+
+  return (
+    <button
+      onClick={handleReset}
+      className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
+    >
+      Start from scratch
+    </button>
+  );
+}
+
 export default function AppShell({ children }: { children: ReactNode }) {
   const [currentStep, setCurrentStep] = useState<number>(1);
 
@@ -47,9 +67,14 @@ export default function AppShell({ children }: { children: ReactNode }) {
           <Link href="/" className="text-xl font-semibold tracking-tight text-brand-headline">
             Redesign to Exit
           </Link>
-          <Suspense fallback={null}>
-            <DemoBadge />
-          </Suspense>
+          <div className="flex items-center gap-6">
+            <Suspense fallback={null}>
+              <DemoBadge />
+            </Suspense>
+            <Suspense fallback={null}>
+              <ResetButton />
+            </Suspense>
+          </div>
         </header>
         <main className="flex flex-1 flex-col">{children}</main>
         <StepProgress currentStep={currentStep} onSelectStep={setCurrentStep} />
